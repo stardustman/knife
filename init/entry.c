@@ -3,8 +3,10 @@
 
 int kern_entry()
 {
+    //0xB8000～0xBFFFF这个地址段便是映射到文本模式的显存的
     uint8_t *input = (uint8_t *)0xB8000;
     //uint8_t color = (0 << 4) | (15 & 0x0F);
+    //黑底绿字  0x2
     uint8_t color = (0 << 4) | (15 & 0x2);
     /**
     http://wiki.0xffffff.org/posts/hurlex-4.html

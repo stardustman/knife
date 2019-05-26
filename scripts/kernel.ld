@@ -26,25 +26,25 @@
  * bss : Block Started by Symbol
  */
 
-ENTRY(start) # 内核程序入口
+ENTRY(start) /*# 内核程序入口*/
 SECTIONS
 {
-	. = 0x100000; # 段起始地址 1M
+	. = 0x100000; /*# 段起始地址 1M*/
 
 	.text :
 	{
-		*(.text) # 代码段
+		*(.text) /*# 代码段*/
 		. = ALIGN(4096);
 	}
 	.data :
 	{
-		*(.data) # 已初始数据段
-		*(.rodata) #只读数据段
+		*(.data) /*# 已初始数据段*/
+		*(.rodata) /*#只读数据段*/
 		. = ALIGN(4096);
 	}
 	.bss :
 	{
-		*(.bss) # 未初始数据段
+		*(.bss) /*# 未初始数据段*/
 		. = ALIGN(4096);
 	}
 	.stab :

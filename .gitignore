@@ -1,2 +1,3 @@
 boot/*.o
 init/*.o
+*/*o

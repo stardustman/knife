@@ -22,27 +22,29 @@
  *      Linux GCC also adds in an extra data section: .rodata. 
  *      This is for read-only initialised data, such as constants. 
  *      For simplicity we simply bundle this in with the .data section.
+
+ * bss : Block Started by Symbol
  */
 
-ENTRY(start)
+ENTRY(start) # 内核程序入口
 SECTIONS
 {
-	. = 0x100000;
+	. = 0x100000; # 段起始地址 1M
 
 	.text :
 	{
-		*(.text)
+		*(.text) # 代码段
 		. = ALIGN(4096);
 	}
 	.data :
 	{
-		*(.data)
-		*(.rodata)
+		*(.data) # 已初始数据段
+		*(.rodata) #只读数据段
 		. = ALIGN(4096);
 	}
 	.bss :
 	{
-		*(.bss)
+		*(.bss) # 未初始数据段
 		. = ALIGN(4096);
 	}
 	.stab :

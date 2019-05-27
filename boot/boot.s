@@ -6,6 +6,7 @@
 ;
 ; ----------------------------------------------------------------
 
+; equ 定义常量 MBOOT_HEADER_MAGIC 不占用内存空间
 MBOOT_HEADER_MAGIC 	equ 	0x1BADB002 	; Multiboot 魔数，由规范决定的
 
 MBOOT_PAGE_ALIGN 	equ 	1 << 0    	; 0 号位表示所有的引导模块将按页(4KB)边界对齐
@@ -33,13 +34,13 @@ MBOOT_CHECKSUM 		equ 	- (MBOOT_HEADER_MAGIC + MBOOT_HEADER_FLAGS)
 ;-----------------------------------------------------------
 
 ;-----------------------------------------------------------------------------
-
+; [] 间接寻址
 [BITS 32]  	; 所有代码以 32-bit 的方式编译
 
 section .text 	; 代码段从这里开始
 
 ; 在代码段的起始位置设置符合 Multiboot 规范的标记
-
+; dd define double 4 bytes
 dd MBOOT_HEADER_MAGIC 	; GRUB 会通过这个魔数判断该映像是否支持
 dd MBOOT_HEADER_FLAGS   ; GRUB 的一些加载时选项，其详细注释在定义处
 dd MBOOT_CHECKSUM       ; 检测数值，其含义在定义处
